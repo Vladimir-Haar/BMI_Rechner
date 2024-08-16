@@ -8,10 +8,11 @@ root.resizable(False, False)
 
 def ergebnis_frau():
     try:
-        a = float(ent_gewicht.get())
-        b = float(ent_groesse.get())
+        a = float(ent_gewicht.get().replace(",", "."))
+        b = float(ent_groesse.get().replace(",", "."))
 
         if a > 0 and b > 0:
+            label_ausgabe2["text"] = ""
             c = a / ((b / 100) ** 2)
             label_ausgabe["text"] = c.__round__(2)
         else:
@@ -34,6 +35,8 @@ label_ergebnis = ttk.Label(root, text="Ergebnis", font="Arial 10 bold")
 label_ergebnis.place(relx=0.42, rely=0.3)
 label_ausgabe = ttk.Label(root, font="Arial 10 bold", background="red", width=37, anchor=CENTER)
 label_ausgabe.place(relx=0.05, rely=0.45)
+label_ausgabe2 = ttk.Label(root, font="Arial 10 bold", background="red", width=37, anchor=CENTER)
+label_ausgabe2.place(relx=0.05, rely=0.58)
 
 art =["Man", "Frau"]
 com_geschlecht = ttk.Combobox(values=art, width=8)
@@ -45,6 +48,6 @@ ent_groesse= ttk.Entry(width=8, justify="center")
 ent_groesse.place(relx=0.74, rely=0.13)
 
 btn_ausführen = ttk.Button(text="Ausführen", command=ergebnis_frau)
-btn_ausführen.place(relx=0.675, rely=0.7)
+btn_ausführen.place(relx=0.675, rely=0.75)
 
 root.mainloop()
